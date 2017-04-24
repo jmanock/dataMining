@@ -10,7 +10,7 @@
 //     ~ Should be able to edit data
 //     ~ Only get back info that is needed
 //   */
-//   if(line.includes('CHASE')){
+//   if(line.includes('JEB')){
 //     something(line);
 //   }
 // });
@@ -25,33 +25,25 @@
 //   console.log(x);
 // }
 
-var fs = require('fs')
-    , util = require('util')
-    , stream = require('stream')
-    , es = require('event-stream');
+let google = require('googleapis');
+let authentication = require("./authenticate");
 
-var lineNr = 0;
+function getData(auth) {
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+    auth: auth,
+    spreadsheetId: '1VqujYQ439UPkcgjoK2CjSyROvE5M5jMRUbkRatz43eE',
+    range: 'Sheet1!A1:U', //Change Sheet1 if your worksheet's name is something else
+  }, (err, response) => {
+    if (err) {
+      console.log('The API returned an error: ' + err);
+      return;
+    }
+    var rows = response.values;
+    console.log(rows);
+  });
+}
 
-var s = fs.createReadStream('../Desktop/orange2:17.txt')
-    .pipe(es.split())
-    .pipe(es.mapSync(function(line){
-
-        // pause the readstream
-        s.pause();
-
-        lineNr += 1;
-
-        // process line here and call s.resume() when rdy
-        // function below was for logging memory usage
-        logMemoryUsage(lineNr);
-
-        // resume the readstream, possibly from a callback
-        s.resume();
-    })
-    .on('error', function(){
-        console.log('Error while reading file.');
-    })
-    .on('end', function(){
-        console.log('Read entire file.')
-    })
-);
+authentication.authenticate().then((auth)=>{
+    getData(auth);
+});
