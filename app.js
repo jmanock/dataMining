@@ -1,7 +1,8 @@
 var fs = require('fs');
 var readline = require('readline');
 var stream = require('stream');
-var instream = fs.createReadStream('../Desktop/orange2:17.txt');
+var files = ['../Desktop/orange2:17.txt', '../Desktop/seminal2:17.txt'];
+var instream = fs.createReadStream(files);
 var outstream = new stream;
 var rl = readline.createInterface(instream, outstream);
 
