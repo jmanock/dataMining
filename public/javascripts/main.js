@@ -3,15 +3,15 @@ $(document).ready(function(){
     if(e.keyCode === 13){
       var search = $(this).val();
       var split = search.split(' ');
-      var firstName = split[0];
-      var lastName = split[1];
+      var firstName = split[0].toUpperCase();
+      var lastName = split[1].toUpperCase();
 
       var params = {
         firstName:firstName,
         lastName:lastName
       };
-      $.get('/searching', params, function(data){
-        
+      $.get('/search', params, function(data){
+
       });
     }
   })
