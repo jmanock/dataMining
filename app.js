@@ -27,21 +27,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.get('/search', function(req, res){
-  /*
-    ~ Add more files to search
-    ~ Maybe a for function add to i if not found
-    ~ Should
-  */
-  var files = ['public/files/orange2:17.txt', 'public/files/seminal2:17.txt'];
+
   var instream = fs.createReadStream('public/files/org_sem.txt');
   var outstream = new stream;
   var rl = readline.createInterface(instream, outstream);
   var firstName = req.query.firstName;
   var lastName = req.query.lastName;
+  var count = 0;
   rl.on('line', function(line){
     if(line.includes(firstName) && line.includes(lastName)){
       console.log(line);
     }
+
+
   });
   rl.on('close', function(){
     console.log('Im Done');
