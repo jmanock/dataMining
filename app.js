@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.get('/search', function(req, res){
 
-  var instream = fs.createReadStream('public/files/org_sem.txt');
+  var instream = fs.createReadStream('public/files/allFlorida.txt');
   var outstream = new stream;
   var rl = readline.createInterface(instream, outstream);
   var firstName = req.query.firstName;
