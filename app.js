@@ -33,16 +33,21 @@ app.get('/search', function(req, res){
   var rl = readline.createInterface(instream, outstream);
   var firstName = req.query.firstName;
   var lastName = req.query.lastName;
-  var count = 0;
+  console.log(firstName, lastName);
   rl.on('line', function(line){
     if(line.includes(firstName) && line.includes(lastName)){
-      console.log(line);
+      Search(line);
     }
-
-
+  }).on('close', function(){
+    console.log('GameOver!');
   });
-  rl.on('close', function(){
-    console.log('Im Done');
-  });
+
+  function Search(line){
+    /*
+      ~ Need to edit the lines
+      ~ Get rid of all junk
+    */
+    console.log(line);
+  }// End `Search Function`
 });// End `/search`
 module.exports = app;
