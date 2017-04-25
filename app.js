@@ -29,7 +29,9 @@ app.use('/', index);
 app.get('/search', function(req, res){
   /*
     ~ Add more files to search
+    ~ Maybe a for function add to i if not found
   */
+  var files = ['public/files/orange2:17.txt', 'public/files/seminal2:17.txt'];
   var instream = fs.createReadStream('public/files/orange2:17.txt');
   var outstream = new stream;
   var rl = readline.createInterface(instream, outstream);
@@ -38,6 +40,9 @@ app.get('/search', function(req, res){
   rl.on('line', function(line){
     if(line.includes(firstName) && line.includes(lastName)){
       console.log(line);
+    }else{
+      // This should select another file
+      console.log('This should search another file');
     }
   });
   rl.on('close', function(){
