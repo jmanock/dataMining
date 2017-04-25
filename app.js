@@ -27,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.get('/search', function(req, res){
+  /*
+    ~ Add more files to search
+  */
   var instream = fs.createReadStream('public/files/orange2:17.txt');
   var outstream = new stream;
   var rl = readline.createInterface(instream, outstream);
@@ -40,8 +43,5 @@ app.get('/search', function(req, res){
   rl.on('close', function(){
     console.log('Im Done');
   });
-  function search(line){
-    console.log(line);
-  }
 });// End `/search`
 module.exports = app;
