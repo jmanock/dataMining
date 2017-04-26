@@ -35,8 +35,8 @@ app.get('/search', function(req, res){
   var lastName = req.query.lastName;
   console.log(firstName, lastName);
   rl.on('line', function(line){
-    if(line.includes(firstName) && line.includes(lastName)){
-      Search(line);
+    if(line.includes(113282526)){
+      console.log(line);
     }
   }).on('close', function(){
     console.log('GameOver!');
@@ -62,6 +62,7 @@ app.get('/search', function(req, res){
     var zip = results[10];
     var sex = results[11];
     var dob = results[13];
+
     console.log(county,voterId,firstName,lastName,address,city,zip,dob);
   }// End `Search Function`
 });// End `/search`
