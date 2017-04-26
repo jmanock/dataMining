@@ -44,8 +44,11 @@ app.get('/search', function(req, res){
 
   function Search(line){
     /*
-      ~ Need to edit the lines
-      ~ Get rid of all junk
+      ~ Move the split up to rl
+      ~ Work in google maps to show address
+      ~ Think about what I want to show everyone
+      ~ Edit the stupid page
+      ~ Return results
     */
     var results = line.split(/[\t]+/);
     var county = results[0];
