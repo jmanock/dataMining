@@ -47,7 +47,13 @@ app.get('/search', function(req, res){
       ~ Need to edit the lines
       ~ Get rid of all junk
     */
+    var county = line.slice(0,3);
+    var voterId = line.slice(4,12);
+    var something = line.slice(13,20);
+    console.log(county,voterId);
+    console.log(something);
     console.log(line);
+    console.log(line.length);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
