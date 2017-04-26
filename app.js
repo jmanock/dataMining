@@ -35,12 +35,9 @@ app.get('/search', function(req, res){
   var lastName = req.query.lastName;
   console.log(firstName, lastName);
   rl.on('line', function(line){
-    var fullName = firstName,lastName;
-    var firstNameResults = line.search(new RegExp(firstName,'gi'));
-    var lastNameResults = line.search(new RegExp(lastName,'gi'));
-
-    if(firstNameResults > 0 && lastNameResults > 0){
-      console.log(line);
+    var results = line.toUpperCase();
+    if(results.includes(firstName) && results.includes(lastName)){
+      Search(line);
     }
 
   }).on('close', function(){
@@ -58,7 +55,7 @@ app.get('/search', function(req, res){
     var county = results[0];
     var voterId = results[1];
     var lName = results[2];
-    var ftName = results[3];
+    var fName = results[3];
     var middleName = results[4];
     var address = results[6];
     var address2 = results[7];
@@ -66,11 +63,7 @@ app.get('/search', function(req, res){
     var zip = results[10];
     var sex = results[11];
     var dob = results[13];
-    if(lName == lastName && fName == firstName){
-      console.log(county);
-    }else{
-      console.log(line);
-    }
+    console.log(results);
 
   }// End `Search Function`
 });// End `/search`
