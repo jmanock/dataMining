@@ -46,9 +46,10 @@ app.get('/search', function(req, res){
 
   function Search(line){
     /*
+      ~ Edit to only show names that match not street names
+      ~ Maybe fName needs to be uppercase
       ~ Work in google maps to show address
       ~ Think about what I want to show everyone
-      ~ Edit the stupid page
       ~ Return results
     */
     var results = line.split(/[\t]+/);
