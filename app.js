@@ -35,19 +35,20 @@ app.get('/search', function(req, res){
   var lastName = req.query.lastName;
   console.log(firstName, lastName);
   rl.on('line', function(line){
-    // if(line.includes(firstName)&&line.includes(lastName)){
-    //   Search(line);
-    // }
-    if(line.includes(113282526)){
-      Search(line);
+    var fullName = firstName,lastName;
+    var firstNameResults = line.search(new RegExp(firstName,'gi'));
+    var lastNameResults = line.search(new RegExp(lastName,'gi'));
+
+    if(firstNameResults > 0 && lastNameResults > 0){
+      console.log(line);
     }
+
   }).on('close', function(){
     console.log('GameOver!');
   });
 
   function Search(line){
     /*
-      ~ Move the split up to rl
       ~ Work in google maps to show address
       ~ Think about what I want to show everyone
       ~ Edit the stupid page
