@@ -47,13 +47,19 @@ app.get('/search', function(req, res){
       ~ Need to edit the lines
       ~ Get rid of all junk
     */
-    var county = line.slice(0,3);
-    var voterId = line.slice(4,12);
-    var something = line.slice(13,20);
-    console.log(county,voterId);
-    console.log(something);
-    console.log(line);
-    console.log(line.length);
+    var results = line.split(/[\t]+/);
+    var county = results[0];
+    var voterId = results[1];
+    var lastName = results[2];
+    var firstName = results[3];
+    var middleName = results[4];
+    var address = results[6];
+    var address2 = results[7];
+    var city = results[8];
+    var zip = results[10];
+    var sex = results[11];
+    var dob = results[13];
+    console.log(county,voterId,firstName,lastName,address,city,zip,dob);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
