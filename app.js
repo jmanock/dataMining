@@ -37,19 +37,16 @@ app.get('/search', function(req, res){
   rl.on('line', function(line){
     var results = line.toUpperCase();
     if(results.includes(firstName) && results.includes(lastName)){
-      Search(line);
+      Search(results);
     }
-
   }).on('close', function(){
     console.log('GameOver!');
   });
 
   function Search(line){
     /*
-      ~ Edit to only show names that match not street names
-      ~ Maybe fName needs to be uppercase
+      ~ Turn dob into age
       ~ Work in google maps to show address
-      ~ Think about what I want to show everyone
       ~ Return results
     */
     var results = line.split(/[\t]+/);
@@ -64,7 +61,10 @@ app.get('/search', function(req, res){
     var zip = results[10];
     var sex = results[11];
     var dob = results[13];
-    console.log(results);
+    if(fName === firstName && lastName === lName){
+      console.log(county, fName, lName);
+    }
+    
 
   }// End `Search Function`
 });// End `/search`
