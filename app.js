@@ -51,7 +51,7 @@ app.get('/search', function(req, res){
       ~ Address
       ~ Zip
       ~ County
-      ~ Age
+      ~ Dob
       ~ Name
       ~ Url link to the page with more info
     */
@@ -60,7 +60,6 @@ app.get('/search', function(req, res){
     var voterId = results[1];
     var lName = results[2];
     // This part changes on length of results
-    // if results[3].length <= 3
     var fName = results[3];
     var middleName = results[4];
     var address = results[6];
@@ -80,7 +79,7 @@ app.get('/search', function(req, res){
 
     if(results[3].length<=3){
       // Check for suffixName
-      // Check length;
+      // Does not look for middle name
       suffix = results[3];
       fName = results[4];
       address = results[7];
@@ -90,39 +89,34 @@ app.get('/search', function(req, res){
       zip = results[11]
       dob = results[14];
       if(zip.length < 5){
+        // This might check for middle name
         zip = results[10];
+        address = results[6];
+        address2 = results[7];
       }
     }
-    // Need to check for 2nd address
-    if(results[11].includes(' ')){
-      // This might be 2nd address or pobox
-      // Looks like dob should change
-      //dob = results[14] || results[13];
-      // Address = results[7-8] || results[6-7]
-      // dob = 18,17
-      if(results[17].length > 1){
-        dob = results[17];
-      }else if(results[18].length > 1){
-        dob = results[18];
-      }else{
-        dob = results[19];
-        console.log(results.length);
-      }
-
+    if(results[4] === 'N' && results[5] !== 'N'){
+      // This is for no middle name
+      address = results[5];
+      address2 = results[6];
     }
-    //console.log(results.length, fName+' '+lName, dob,zip);
-
-    // if(results.length === 26 || results.length === 28){
-    //   // Seperate into two groups
-    //   if(results.includes('JR')||results.includes('II')||results.includes('III')|| results.includes('IV')){
-    //     // Name Suffix shift everything plus one?
-    //     fName = results[4];
-    //     suffix = results[3];
+    // // Need to check for 2nd address
+    // if(results[11].includes(' ')){
+    //   // This might be 2nd address or pobox
+    //   // Looks like dob should change
+    //
+    //   if(results[17].length > 1){
+    //     dob = results[17];
+    //   }else if(results[18].length > 1){
+    //     dob = results[18];
+    //   }else{
+    //     dob = results[19];
     //   }
     // }
-
-
-
+    if(address.charAt(0) === 'A' || address === ' '){
+      //console.log(results);
+    }
+    console.log(results.length, address, address2);
 
   }// End `Search Function`
 });// End `/search`
