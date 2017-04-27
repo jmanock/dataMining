@@ -48,11 +48,11 @@ app.get('/search', function(req, res){
   function Search(line){
     /*
     SHOW:
-      ~ Address
+      ~ Address √
       ~ Zip
-      ~ County
+      ~ County √
       ~ Dob
-      ~ Name
+      ~ Name √
       ~ Url link to the page with more info
     */
     var results = line.split(/[\t]+/);
@@ -75,13 +75,13 @@ app.get('/search', function(req, res){
     var areaCode = results[25];
     var phoneNumber = results[26];
     var email = results[27];
-    var suffix;
+    var suffix = ' ';
 
     if(results[3].length<=3){
       // Check for suffixName
-      // Does not look for middle name
       suffix = results[3];
       fName = results[4];
+      middleName = results[5]
       address = results[7];
       address2 = results[8];
       city = results[9];
@@ -89,10 +89,11 @@ app.get('/search', function(req, res){
       zip = results[11]
       dob = results[14];
       if(zip.length < 5){
-        // This might check for middle name
+        // This looks for middle name
         zip = results[10];
         address = results[6];
         address2 = results[7];
+        middleName = ' ';
       }
     }
     if(results[4] === 'N' && results[5] !== 'N'){
@@ -100,23 +101,8 @@ app.get('/search', function(req, res){
       address = results[5];
       address2 = results[6];
     }
-    // // Need to check for 2nd address
-    // if(results[11].includes(' ')){
-    //   // This might be 2nd address or pobox
-    //   // Looks like dob should change
-    //
-    //   if(results[17].length > 1){
-    //     dob = results[17];
-    //   }else if(results[18].length > 1){
-    //     dob = results[18];
-    //   }else{
-    //     dob = results[19];
-    //   }
-    // }
-    if(address.charAt(0) === 'A' || address === ' '){
-      //console.log(results);
-    }
-    console.log(results.length, address, address2);
+    // console.log(results.length, zip, dob);
+    console.log(fName,middleName,lName,suffix);
 
   }// End `Search Function`
 });// End `/search`
