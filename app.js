@@ -47,7 +47,6 @@ app.get('/search', function(req, res){
     /*
       ~ Turn dob into age
       ~ Work in google maps to show address
-      ~ Return results
     */
     var results = line.split(/[\t]+/);
     var county = results[0];
@@ -59,12 +58,20 @@ app.get('/search', function(req, res){
     var address2 = results[7];
     var city = results[8];
     var zip = results[10];
-    var sex = results[11];
+    var gender = results[11];
+    var race = results[12];
     var dob = results[13];
-    if(fName === firstName && lastName === lName){
-      console.log(county, fName, lName);
-    }
-    
+    var registrationDate = results[14];
+    var party = results[15];
+    var precinct = results[16];
+    var areaCode = results[25];
+    var phoneNumber = results[26];
+    var email = results[27];
+    // if(fName === firstName && lastName === lName){
+    //   console.log(county, fName, lName);
+    // }
+    console.log(results.length, fName, lName, dob);
+
 
   }// End `Search Function`
 });// End `/search`
