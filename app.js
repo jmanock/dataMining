@@ -78,7 +78,7 @@ app.get('/search', function(req, res){
     var suffix = ' ';
 
     if(results[3].length<=3){
-      // Check for suffixName
+      // Checks for suffixName
       suffix = results[3];
       fName = results[4];
       middleName = results[5]
@@ -101,12 +101,16 @@ app.get('/search', function(req, res){
       address = results[5];
       address2 = results[6];
     }
-    if(dob.charAt(0) !== '0'){
-      if(dob.charAt(0) !== '1'){
-        console.log(dob);
-      }
+    // if(dob.charAt(0) !== '0'){
+    //   if(dob.charAt(0) !== '1'){
+    //     console.log(dob);
+    //   }
+    // }
+    if(dob.charAt(6) === '2'){
+      // no middle name or dob starts with 2
+      console.log(dob, zip);
+      console.log(results);
     }
-
     // if(dob.length < 10){
     //   // Checking for 2nd address
     //   if(results[17] < 10){
@@ -122,10 +126,7 @@ app.get('/search', function(req, res){
     //   }
     //
     // }
-    
-    if(dob.charAt(7) === '2'){
-      console.log(dob);
-    }
+
     //console.log(dob);
   }// End `Search Function`
 });// End `/search`
