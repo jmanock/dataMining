@@ -101,9 +101,32 @@ app.get('/search', function(req, res){
       address = results[5];
       address2 = results[6];
     }
-    // console.log(results.length, zip, dob);
-    console.log(fName,middleName,lName,suffix);
+    if(dob.charAt(0) !== '0'){
+      if(dob.charAt(0) !== '1'){
+        console.log(dob);
+      }
+    }
 
+    // if(dob.length < 10){
+    //   // Checking for 2nd address
+    //   if(results[17] < 10){
+    //     dob = results[18];
+    //   }else{
+    //     dob = results[17];
+    //   }
+    // }
+    // if(dob.charAt(0)!== '0'){
+    //   if(dob.charAt(0) !='1'){
+    //     console.log(dob);
+    //     console.log(results);
+    //   }
+    //
+    // }
+    
+    if(dob.charAt(7) === '2'){
+      console.log(dob);
+    }
+    //console.log(dob);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
