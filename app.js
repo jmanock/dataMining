@@ -49,6 +49,8 @@ app.get('/search', function(req, res){
     for(var i = 0; i<results.length; i++){
       if(results[i].includes('/')){
         dob = results[i-1];
+        gender = results[i-3];
+        race = results[i-2];
       }
     }
     var county = results[0];
@@ -61,9 +63,8 @@ app.get('/search', function(req, res){
     var address2 = results[7];
     var city = results[8];
     var zip = results[10];
-    var gender = results[11];
-    var race = results[12];
-    // var dob = results[13];
+
+    // var race = results[12];
     var registrationDate = results[14];
     var party = results[15];
     var precinct = results[16];
@@ -80,9 +81,7 @@ app.get('/search', function(req, res){
       address = results[7];
       address2 = results[8];
       city = results[9];
-      gender = results[12];
       zip = results[11]
-      // dob = results[14];
       if(zip.length < 5){
         // This looks for middle name
         zip = results[10];
@@ -97,42 +96,22 @@ app.get('/search', function(req, res){
       address2 = results[6];
     }
     /*
-    SHOW:
-      ~ Address √
-      ~ Zip √
-      ~ County √
-      ~ Dob
-      ~ Name √
       ~ Url link to the page with more info
     */
-
-     var letters = /^[A-Z]+$/;
-
+    var letters = /^[A-Z]+$/;
     if(zip.match(letters)){
       zip = results[9];
     }
+
     if(zip.includes(' ')){
       zip = results[9];
     }
-    // if(dob.charAt(0)!== '0'){
-    //   if(dob.charAt(0) !='1'){
-    //     console.log(dob);
-    //     console.log(results);
-    //   }
-    //
-    // }
-    // if(dob.length !== 10){
-    //   // console.log(results.length, dob);
-    //   // console.log(results);
-    //   for(var i =0; i<results.length; i++){
-    //     if(results[i].includes('/')){
-    //       dob = results[i-1];
-    //       // var registration = results[i+1];
-    //     }
-    //   }
-    // }
 
-    console.log(fName,lName, dob);
+    if(gender.length > 1){
+      // console.log(gender);
+      // console.log(results);
+    }
+    console.log(fName, lName, gender, race);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
