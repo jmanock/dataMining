@@ -45,15 +45,6 @@ app.get('/search', function(req, res){
   });
 
   function Search(line){
-    /*
-    SHOW:
-      ~ Address √
-      ~ Zip
-      ~ County √
-      ~ Dob
-      ~ Name √
-      ~ Url link to the page with more info
-    */
     var results = line.split(/[\t]+/);
     var county = results[0];
     var voterId = results[1];
@@ -101,16 +92,24 @@ app.get('/search', function(req, res){
       address2 = results[6];
     }
     /*
-      ~ Need to find out if its a real dob
-      ~ Maybe check results -1 for dob?
-      ~ Could also check to see if they have / in the string
+    SHOW:
+      ~ Address √
+      ~ Zip
+      ~ County √
+      ~ Dob
+      ~ Name √
+      ~ Url link to the page with more info
+    ZIP:
+      ~ Lets solve this first
     */
-    // var letters = /^[A-Z]+$/;
-    // if(dob.match(letters)){
-    //   // This checks for 2nd address sort of
-    //   dob = results[17];
-    //   //console.log(dob);
-    // }
+
+     var letters = /^[A-Z]+$/;
+
+    if(zip.match(letters)){
+      zip = results[9];
+      // console.log(zip);
+      // console.log(results);
+    }
     // if(dob.charAt(0)!== '0'){
     //   if(dob.charAt(0) !='1'){
     //     console.log(dob);
@@ -119,14 +118,13 @@ app.get('/search', function(req, res){
     //
     // }
     if(dob.length !== 10){
-      // 18
-      if(results.length === 30){
-        dob = results[17];
-      }
-      console.log(results.length, dob);
-      console.log(results);
+      // console.log(results.length, dob);
+      // console.log(results);
     }
-
+    if(zip.includes(' ')){
+      zip = results[9];
+    }
+     console.log(results.length, zip);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
