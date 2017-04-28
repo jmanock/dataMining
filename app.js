@@ -94,13 +94,11 @@ app.get('/search', function(req, res){
     /*
     SHOW:
       ~ Address √
-      ~ Zip
+      ~ Zip √
       ~ County √
       ~ Dob
       ~ Name √
       ~ Url link to the page with more info
-    ZIP:
-      ~ Lets solve this first
     */
 
      var letters = /^[A-Z]+$/;
@@ -124,7 +122,7 @@ app.get('/search', function(req, res){
     if(zip.includes(' ')){
       zip = results[9];
     }
-     console.log(results.length, zip);
+     console.log(results.length, address, address2);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
