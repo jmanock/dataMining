@@ -37,42 +37,53 @@ app.get('/search', function(req, res){
 
   rl.on('line', function(line){
     var results = line.toUpperCase();
-    if(results.includes(firstName) && results.includes(lastName)){
-      Search(results);
-    }
+    // if(results.includes(firstName) && results.includes(lastName)){
+    //   Search(results);
+    // }
+
+    Search(results);
   }).on('close', function(){
     console.log('GameOver!');
   });
 
   function Search(line){
     var results = line.split(/[\t]+/);
+    var email;
     for(var i = 0; i<results.length; i++){
       if(results[i].includes('/')){
+        registration = results[i];
         dob = results[i-1];
         gender = results[i-3];
         race = results[i-2];
       }
+      if(results[i].includes('@')){
+        email = results[i];
+      }
     }
+    
+    // if(email != undefined && gender === 'F'){
+    //   console.log(email, dob, gender);
+    // }
     var county = results[0];
     var voterId = results[1];
     var lName = results[2];
-    // This part changes on length of results
     var fName = results[3];
     var middleName = results[4];
     var address = results[6];
     var address2 = results[7];
     var city = results[8];
     var zip = results[10];
-
-    // var race = results[12];
-    var registrationDate = results[14];
-    var party = results[15];
-    var precinct = results[16];
     var areaCode = results[25];
     var phoneNumber = results[26];
-    var email = results[27];
     var suffix = ' ';
-
+    var today = new Date();
+    var birthDate = new Date(dob);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if(m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
+      age --;
+    }
+    console.log(age);
     if(results[3].length<=3){
       // Checks for suffixName
       suffix = results[3];
@@ -97,21 +108,19 @@ app.get('/search', function(req, res){
     }
     /*
       ~ Url link to the page with more info
+      ~ Have to only check names that match
     */
     var letters = /^[A-Z]+$/;
     if(zip.match(letters)){
+      // Checks to move zip
       zip = results[9];
     }
 
     if(zip.includes(' ')){
+      // Another check on zip
       zip = results[9];
     }
 
-    if(gender.length > 1){
-      // console.log(gender);
-      // console.log(results);
-    }
-    console.log(fName, lName, gender, race);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
