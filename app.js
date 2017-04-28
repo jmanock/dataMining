@@ -40,7 +40,6 @@ app.get('/search', function(req, res){
     if(results.includes(firstName) && results.includes(lastName)){
       Search(results);
     }
-
   }).on('close', function(){
     console.log('GameOver!');
   });
@@ -101,23 +100,16 @@ app.get('/search', function(req, res){
       address = results[5];
       address2 = results[6];
     }
-    // if(dob.charAt(0) !== '0'){
-    //   if(dob.charAt(0) !== '1'){
-    //     console.log(dob);
-    //   }
-    // }
-    if(dob.charAt(6) === '2'){
-      // no middle name or dob starts with 2
-      console.log(dob, zip);
-      console.log(results);
-    }
-    // if(dob.length < 10){
-    //   // Checking for 2nd address
-    //   if(results[17] < 10){
-    //     dob = results[18];
-    //   }else{
-    //     dob = results[17];
-    //   }
+    /*
+      ~ Need to find out if its a real dob
+      ~ Maybe check results -1 for dob?
+      ~ Could also check to see if they have / in the string
+    */
+    // var letters = /^[A-Z]+$/;
+    // if(dob.match(letters)){
+    //   // This checks for 2nd address sort of
+    //   dob = results[17];
+    //   //console.log(dob);
     // }
     // if(dob.charAt(0)!== '0'){
     //   if(dob.charAt(0) !='1'){
@@ -126,8 +118,15 @@ app.get('/search', function(req, res){
     //   }
     //
     // }
+    if(dob.length !== 10){
+      // 18
+      if(results.length === 30){
+        dob = results[17];
+      }
+      console.log(results.length, dob);
+      console.log(results);
+    }
 
-    //console.log(dob);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
