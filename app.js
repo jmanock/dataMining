@@ -46,6 +46,11 @@ app.get('/search', function(req, res){
 
   function Search(line){
     var results = line.split(/[\t]+/);
+    for(var i = 0; i<results.length; i++){
+      if(results[i].includes('/')){
+        dob = results[i-1];
+      }
+    }
     var county = results[0];
     var voterId = results[1];
     var lName = results[2];
@@ -58,7 +63,7 @@ app.get('/search', function(req, res){
     var zip = results[10];
     var gender = results[11];
     var race = results[12];
-    var dob = results[13];
+    // var dob = results[13];
     var registrationDate = results[14];
     var party = results[15];
     var precinct = results[16];
@@ -77,7 +82,7 @@ app.get('/search', function(req, res){
       city = results[9];
       gender = results[12];
       zip = results[11]
-      dob = results[14];
+      // dob = results[14];
       if(zip.length < 5){
         // This looks for middle name
         zip = results[10];
@@ -105,8 +110,9 @@ app.get('/search', function(req, res){
 
     if(zip.match(letters)){
       zip = results[9];
-      // console.log(zip);
-      // console.log(results);
+    }
+    if(zip.includes(' ')){
+      zip = results[9];
     }
     // if(dob.charAt(0)!== '0'){
     //   if(dob.charAt(0) !='1'){
@@ -115,14 +121,18 @@ app.get('/search', function(req, res){
     //   }
     //
     // }
-    if(dob.length !== 10){
-      // console.log(results.length, dob);
-      // console.log(results);
-    }
-    if(zip.includes(' ')){
-      zip = results[9];
-    }
-     console.log(results.length, address, address2);
+    // if(dob.length !== 10){
+    //   // console.log(results.length, dob);
+    //   // console.log(results);
+    //   for(var i =0; i<results.length; i++){
+    //     if(results[i].includes('/')){
+    //       dob = results[i-1];
+    //       // var registration = results[i+1];
+    //     }
+    //   }
+    // }
+
+    console.log(fName,lName, dob);
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
