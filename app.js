@@ -119,6 +119,14 @@ app.get('/search', function(req, res){
     }
     if(lName === lastName && fName === firstName){
       // This is where the magic happens
+      /*
+        ~ Name
+        ~ Address
+        ~ Address2
+        ~ Zip
+        ~ Age
+      */
+      console.log(fName,lName,county,address,address2,zip,age,dob);
     }
   }// End `Search Function`
 });// End `/search`
