@@ -72,7 +72,7 @@ app.get('/search', function(req, res){
     var areaCode = results[25];
     var phoneNumber = results[26];
     var suffix = ' ';
-
+    var Results = [];
     var today = new Date();
     var birthDate = new Date(dob);
     var age = today.getFullYear() - birthDate.getFullYear();
@@ -125,9 +125,22 @@ app.get('/search', function(req, res){
         ~ Address2
         ~ Zip
         ~ Age
+        ~ Url maybe?
       */
-      console.log(fName,lName,county,address,address2,zip,age,dob);
+      //console.log(fName,lName,county,address,address2,zip,age,dob);
+      var fullName = fName+' '+middleName+' '+lName;
+
+      Results.push({
+        Name:fullName,
+        Address:address,
+        Address2:address2,
+        Zip:zip,
+        Age:age,
+        Dob:dob
+      });
+      res.send(Results);
     }
+
   }// End `Search Function`
 });// End `/search`
 module.exports = app;
