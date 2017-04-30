@@ -30,12 +30,7 @@ app.get('/search', function(req, res){
   var firstName = req.query.firstName;
   var lastName = req.query.lastName;
   console.log(firstName, lastName);
-  Searching(firstName, lastName);
-  function Final(rArray){
-    console.log(rArray);
-  }
-});// End `/Search`
-function Searching(firstName, lastName){
+
   var ResultsArray = [];
   var instream = fs.createReadStream('public/files/allFlorida.txt');
   var outstream = new stream;
@@ -50,11 +45,11 @@ function Searching(firstName, lastName){
         if(results[i].includes('/')){
           var registration = results[i];
           var dob = results[i-1];
-          var gender = results[i-1];
+          var gender = results[i-3];
           var race = results[i-2];
         }
         if(results[i].includes('@')){
-          email = results[i];
+          emai = results[i];
         }
       }
       var county = results[0];
@@ -66,8 +61,6 @@ function Searching(firstName, lastName){
       var address2 = results[7];
       var city = results[8];
       var zip = results[9];
-      var areacode = results[25];
-      var phoneNumber = results[26];
       var suffix = ' ';
 
       var today = new Date();
@@ -90,7 +83,7 @@ function Searching(firstName, lastName){
         zip = results[11];
 
         if(zip.length < 5){
-          // This looks for middle name
+          // Looks for middle name
           zip = results[10];
           address = results[6];
           address2 = results[7];
@@ -99,14 +92,14 @@ function Searching(firstName, lastName){
       }
 
       if(results[4] === 'N' && results[5] !== 'N'){
-        // This is for no Middle name
+        // No Middle name
         address = results[5];
-        address2 = results[6];
+        address = results[6];
       }
 
       var letters = /^[A-Z]+$/;
+
       if(zip.match(letters)){
-        // Checks Zip
         zip = results[9];
       }
 
@@ -114,23 +107,24 @@ function Searching(firstName, lastName){
         zip = results[9];
       }
 
-      if(lName === lastName && fName == firstName){
-        var fullName = fName + ' ' + middleName + ' '+ lName;
-        ResultsArray.push({
-          Name:fullName,
-          Address:address,
-          Address2:address2,
-          Zip:zip,
-          Age:age,
-          Dob:dob
-        });
-        return ResultsArray;
+      if(lName === lastName && fName === firstName){
+        var fullName = fName + ' ' + middleName + ' ' + lName;
+        // ResultsArray.push({
+        //   Name:fullName,
+        //   Address:address,
+        //   Address2:address2,
+        //   Zip:zip,
+        //   Age:age,
+        //   Dob:dob,
+        //   City:city
+        // });
+        // return ResultsArray;
+        console.log(zip, fullName);
       }
     }
   }).on('close', function(){
-    console.log(ResultsArray.length);
+    //console.log(ResultsArray);
     console.log('Donez!');
   });
-
-}
+});// End `/Search`
 module.exports = app;
