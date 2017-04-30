@@ -11,7 +11,7 @@ $(document).ready(function(){
         lastName:lastName
       };
       $.get('/search', params, function(data){
-        if(data instanceof Object){
+        if(data instanceof Array){
           console.log(data);
         }
       });

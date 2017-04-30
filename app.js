@@ -98,32 +98,27 @@ app.get('/search', function(req, res){
       }
 
       var letters = /^[A-Z]+$/;
-
-      if(zip.match(letters)){
-        zip = results[9];
-      }
-
-      if(zip.includes(' ')){
-        zip = results[9];
+      if(zip === ' '){
+        zip = results[10];
       }
 
       if(lName === lastName && fName === firstName){
         var fullName = fName + ' ' + middleName + ' ' + lName;
-        // ResultsArray.push({
-        //   Name:fullName,
-        //   Address:address,
-        //   Address2:address2,
-        //   Zip:zip,
-        //   Age:age,
-        //   Dob:dob,
-        //   City:city
-        // });
-        // return ResultsArray;
-        console.log(zip, fullName);
+        ResultsArray.push({
+          Name:fullName,
+          Address:address,
+          Address2:address2,
+          Zip:zip,
+          Age:age,
+          Dob:dob,
+          City:city
+        });
+        return ResultsArray;
       }
     }
   }).on('close', function(){
-    //console.log(ResultsArray);
+    res.send(ResultsArray);
+    console.log(ResultsArray.length);
     console.log('Donez!');
   });
 });// End `/Search`
