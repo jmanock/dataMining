@@ -72,7 +72,7 @@ app.get('/search', function(req, res){
         age --;
       }
 
-      if(results[3].length <= 3){
+      if(results[3].length <= 3 && results[3] !== firstName){
         // Checks for suffixName
         suffix = results[3];
         fName = results[4];
