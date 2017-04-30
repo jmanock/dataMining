@@ -31,6 +31,9 @@ app.get('/search', function(req, res){
   var lastName = req.query.lastName;
   console.log(firstName, lastName);
   Searching(firstName, lastName);
+  function Final(rArray){
+    console.log(rArray);
+  }
 });// End `/Search`
 function Searching(firstName, lastName){
   var ResultsArray = [];
@@ -121,11 +124,12 @@ function Searching(firstName, lastName){
           Age:age,
           Dob:dob
         });
-        console.log(ResultsArray.length);
+        return ResultsArray;
       }
     }
   }).on('close', function(){
-    console.log('GameOver!');
+    console.log(ResultsArray.length);
+    console.log('Donez!');
   });
 
 }
