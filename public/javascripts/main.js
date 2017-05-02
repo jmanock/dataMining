@@ -12,9 +12,31 @@ $(document).ready(function(){
       };
       $.get('/search', params, function(data){
         if(data instanceof Array){
+          /*
+            ~ Maybe url links
+            ~ Google maps?
+            ~ Better font and color
+            ~ Search for a space only one
+          */
           console.log(data);
         }
       });
     }
   })
-});
+
+});//End `Document.Ready`
+function initMap(){
+  var uluru = {
+    lat:-25.363,
+    lng:131.004
+  };
+  var map = new google.maps.Map(document.getElementById('map'),{
+    zoom:4,
+    center:uluru
+  });
+  var marker = new google.maps.Marker({
+    position:uluru,
+    map:map
+  });
+  var 
+}

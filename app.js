@@ -102,6 +102,7 @@ app.get('/search', function(req, res){
         zip = results[10];
       }
       console.log(fName, lName);
+
       if(lName === lastName && fName === firstName){
         var fullName = fName + ' ' + middleName + ' ' + lName;
 
