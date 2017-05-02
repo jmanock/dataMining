@@ -104,7 +104,12 @@ app.get('/search', function(req, res){
 
       if(lName === lastName && fName === firstName){
         var fullName = fName + ' ' + middleName + ' ' + lName;
-
+        var fThree = voterId.slice(0,4);
+        var lThree = voterId.slice(4);
+        var url = 'http://flvoters.com/by_number/'+fThree+'/'+lThree+'_'+fName.toLowerCase()+'_'+middleName.toLowerCase()+'_'+lName.toLowerCase()+'.html';
+        var copy = 'http://flvoters.com/by_number/1211/13294_jon_m_manock.html';
+        console.log(copy);
+        console.log(url);
         ResultsArray.push({
           Name:fullName,
           Address:address,

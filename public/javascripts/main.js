@@ -14,13 +14,22 @@ $(document).ready(function(){
         if(data instanceof Array){
           /*
             ~ Maybe url links
-            ~ Google maps?
-            ~ Better font and color
-            ~ Search for a space only one
-            name address address2 zip dob age city
+            ~ voter page url
+            ~ google maps url
           */
           for(var i = 0; i<data.length; i++){
-            $('#results').append('<li>'+data[i].Name+data[i].Age+data[i].Address+data[i].Address2+data[i].Zip+data[i].City);
+            $('#results').append(
+              '<li>'+data[i].Name
+              +' '+data[i].Age
+              +' '+data[i].Dob
+              +' '+data[i].Address
+              +' '+data[i].Address2
+              +' '+data[i].City
+              +' '+data[i].Zip
+              +'<a href='+data[i].Url+' target="_blank">'+'Voter Page</a>'
+              +'<a href='
+              +'</li>'
+            );
           }
         }
       });
@@ -28,18 +37,3 @@ $(document).ready(function(){
   })
 
 });//End `Document.Ready`
-// function initMap(){
-//   var uluru = {
-//     lat:27.6648,
-//     lng:-81.5158
-//   };
-//   var map = new google.maps.Map(document.getElementById('map'),{
-//     zoom:7,
-//     center:uluru
-//   });
-//   var marker = new google.maps.Marker({
-//     position:uluru,
-//     map:map
-//   });
-//
-// }
