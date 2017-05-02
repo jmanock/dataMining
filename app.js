@@ -103,12 +103,14 @@ app.get('/search', function(req, res){
       }
 
       if(lName === lastName && fName === firstName){
+        console.log(results);
         var fullName = fName + ' ' + middleName + ' ' + lName;
         var fThree = voterId.slice(0,4);
         var lThree = voterId.slice(4);
+        zip = zip.slice(0,5);
         var url = 'http://flvoters.com/by_number/'+fThree+'/'+lThree+'_'+fName.toLowerCase()+'_'+middleName.toLowerCase()+'_'+lName.toLowerCase()+'.html';
         var urlAddress = 'https://www.google.com/maps/place/'+address+city+'+'+zip;
-        console.log(urlAddress);
+
         ResultsArray.push({
           Name:fullName,
           Address:address,
