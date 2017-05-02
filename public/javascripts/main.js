@@ -17,26 +17,29 @@ $(document).ready(function(){
             ~ Google maps?
             ~ Better font and color
             ~ Search for a space only one
+            name address address2 zip dob age city
           */
-          console.log(data);
+          for(var i = 0; i<data.length; i++){
+            $('#results').append('<li>'+data[i].Name+data[i].Age+data[i].Address+data[i].Address2+data[i].Zip+data[i].City);
+          }
         }
       });
     }
   })
 
 });//End `Document.Ready`
-function initMap(){
-  var uluru = {
-    lat:-25.363,
-    lng:131.004
-  };
-  var map = new google.maps.Map(document.getElementById('map'),{
-    zoom:4,
-    center:uluru
-  });
-  var marker = new google.maps.Marker({
-    position:uluru,
-    map:map
-  });
-  var 
-}
+// function initMap(){
+//   var uluru = {
+//     lat:27.6648,
+//     lng:-81.5158
+//   };
+//   var map = new google.maps.Map(document.getElementById('map'),{
+//     zoom:7,
+//     center:uluru
+//   });
+//   var marker = new google.maps.Marker({
+//     position:uluru,
+//     map:map
+//   });
+//
+// }
