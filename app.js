@@ -107,9 +107,8 @@ app.get('/search', function(req, res){
         var fThree = voterId.slice(0,4);
         var lThree = voterId.slice(4);
         var url = 'http://flvoters.com/by_number/'+fThree+'/'+lThree+'_'+fName.toLowerCase()+'_'+middleName.toLowerCase()+'_'+lName.toLowerCase()+'.html';
-        var copy = 'http://flvoters.com/by_number/1211/13294_jon_m_manock.html';
-        console.log(copy);
-        console.log(url);
+        var urlAddress = 'https://www.google.com/maps/place/'+address+city+'+'+zip;
+        console.log(urlAddress);
         ResultsArray.push({
           Name:fullName,
           Address:address,
@@ -117,7 +116,9 @@ app.get('/search', function(req, res){
           Zip:zip,
           Age:age,
           Dob:dob,
-          City:city
+          City:city,
+          Url:url,
+          UrlAddress:urlAddress
         });
         return ResultsArray;
       }
