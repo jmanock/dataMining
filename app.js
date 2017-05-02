@@ -77,6 +77,7 @@ app.get('/search', function(req, res){
       if(results[3].length <= 3 && results[3] !== firstName){
         // Checks for suffixName
         // if middle name is 3 letters there is a conflict
+        // Maybe check for jr or v
         suffix = results[3];
         fName = results[4];
         middleName = results[5];
