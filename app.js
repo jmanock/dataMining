@@ -39,8 +39,10 @@ app.get('/search', function(req, res){
   rl.on('line', function(line){
     var results = line.toUpperCase();
     if(results.includes(firstName) && results.includes(lastName)){
+
       results = results.split(/[\t]+/);
       var email;
+
       for(var i = 0; i < results.length; i++){
         if(results[i].includes('/')){
           var registration = results[i];
@@ -74,6 +76,7 @@ app.get('/search', function(req, res){
 
       if(results[3].length <= 3 && results[3] !== firstName){
         // Checks for suffixName
+        // if middle name is 3 letters there is a conflict
         suffix = results[3];
         fName = results[4];
         middleName = results[5];
@@ -87,6 +90,7 @@ app.get('/search', function(req, res){
           zip = results[10];
           address = results[6];
           address2 = results[7];
+          city = results[8];
           middleName = ' ';
         }
       }
@@ -94,7 +98,9 @@ app.get('/search', function(req, res){
       if(results[4] === 'N' && results[5] !== 'N'){
         // No Middle name
         address = results[5];
-        address = results[6];
+        address2 = results[6];
+        city = results[7];
+        middleName = ' ';
       }
 
       var letters = /^[A-Z]+$/;
@@ -103,13 +109,24 @@ app.get('/search', function(req, res){
       }
 
       if(lName === lastName && fName === firstName){
-        console.log(results);
         var fullName = fName + ' ' + middleName + ' ' + lName;
         var fThree = voterId.slice(0,4);
         var lThree = voterId.slice(4);
-        zip = zip.slice(0,5);
         var url = 'http://flvoters.com/by_number/'+fThree+'/'+lThree+'_'+fName.toLowerCase()+'_'+middleName.toLowerCase()+'_'+lName.toLowerCase()+'.html';
-        var urlAddress = 'https://www.google.com/maps/place/'+address+city+'+'+zip;
+        if(middleName === ' '){
+          fullName = fName+' '+lName;
+          url = 'http://flvoters.com/by_number/'+fThree+'/'+lThree+'_'+fName.toLowerCase()+'_'+lName.toLowerCase()+'.html';
+        }
+
+        zip = zip.slice(0,5);
+
+        var urlAdd = address.replace(/\s+/g,'+');
+        var urlCity = city.replace(/\s+/g,'+');
+        var urlAddress = 'https://www.google.com/maps/place/'+urlAdd+urlCity+'+'+zip;
+
+        if(city === ' '){
+          console.log(results);
+        }
 
         ResultsArray.push({
           Name:fullName,

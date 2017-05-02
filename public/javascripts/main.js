@@ -19,30 +19,14 @@ $(document).ready(function(){
       };
       $.get('/search', params, function(data){
         if(data instanceof Array){
-          // for(var i = 0; i<data.length; i++){
-          //   $('#results').append(
-          //     '<li>'+data[i].Name
-          //     +' '+data[i].Age
-          //     +' '+data[i].Dob
-          //     +' '+data[i].Address
-          //     +' '+data[i].Address2
-          //     +' '+data[i].City
-          //     +' '+data[i].Zip
-          //     +'<a href='+data[i].Url+' target="_blank">'+'Voter Page</a>'
-          //     +'<a href='+data[i].UrlAddress+' target="_blank">'+'Google Maps</a>'
-          //     +'</li>'
-          //   );
-          // }
-
           $('#results').append(
             '<thead>'+'<tr>'
             +'<th class="name">Name</th>'
+            +'<th class="age">Age</th>'
             +'<th class="address">Address</th>'
             +'<th class="apt">Apt/Unit</th>'
             +'<th class="city">City</th>'
             +'<th class="zip">Zip</th>'
-            +'<th class="age">Age</th>'
-            +'<th class="dob">Birthday</th>'
             +'<th class="google">Google Maps</th>'
             +'<th class="voter">Voter Page</th>'
             +'</tr></thead>'
@@ -60,12 +44,11 @@ $(document).ready(function(){
             $('thead').append(
               '<tr>'
                 +'<td>'+name+'</td>'
+                +'<td>'+age+'</td>'
                 +'<td>'+address+'</td>'
                 +'<td>'+address2+'</td>'
                 +'<td>'+city+'</td>'
                 +'<td>'+zip+'</td>'
-                +'<td>'+age+'</td>'
-                +'<td>'+dob+'</td>'
                 +'<td>'+google+'</td>'
                 +'<td>'+voter+'</td>'+
               '</tr>'
