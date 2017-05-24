@@ -39,7 +39,6 @@ app.get('/search', function(req, res){
   rl.on('line', function(line){
     var results = line.toUpperCase();
     if(results.includes(firstName) && results.includes(lastName)){
-
       results = results.split(/[\t]+/);
       var email;
 
@@ -108,7 +107,7 @@ app.get('/search', function(req, res){
       if(zip === ' '){
         zip = results[10];
       }
-
+      
       if(lName === lastName && fName === firstName){
         var fullName = fName + ' ' + middleName + ' ' + lName;
         var fThree = voterId.slice(0,4);

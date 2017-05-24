@@ -3,9 +3,7 @@ $(document).ready(function(){
     if(e.keyCode === 13){
       /*
         ~ Change layout
-        ~ Maybe use a table
         ~ Work on errors with hyphins or middle name
-        ~ Style better
         ~ Add spinner
       */
       var search = $(this).val();
