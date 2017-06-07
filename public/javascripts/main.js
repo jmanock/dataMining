@@ -5,7 +5,6 @@ $(document).ready(function(){
       /*
         ~ Change layout
         ~ Work on errors with hyphins or middle name
-        ~ Add spinner
         ~ Clear on enter
       */
       $('#loader').show();
