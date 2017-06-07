@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('#loader').hide();
   $('#search').on('keyup', function(e){
     if(e.keyCode === 13){
       /*
@@ -7,6 +8,7 @@ $(document).ready(function(){
         ~ Add spinner
         ~ Clear on enter
       */
+      $('#loader').show();
       var search = $(this).val();
       var split = search.split(' ');
       var firstName = split[0].toUpperCase();
@@ -18,6 +20,7 @@ $(document).ready(function(){
       };
       $.get('/search', params, function(data){
         if(data instanceof Array){
+          $('#loader').hide();
           $('#results').append(
             '<thead>'+'<tr>'
             +'<th class="name">Name</th>'
